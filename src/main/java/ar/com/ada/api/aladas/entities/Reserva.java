@@ -2,6 +2,8 @@ package ar.com.ada.api.aladas.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.*;
 
 @Entity
@@ -12,15 +14,15 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reserva_id")
     private Integer reservaId;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "vuelo_id", referencedColumnName = "vuelo_id")
     private Vuelo vuelo;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "pasajero_id", referencedColumnName = "pasajero_id")
     private Pasajero pasajero;
-
+    @JsonIgnore
     @OneToOne(mappedBy = "reserva", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Pasaje pasaje; // en linea 24: nombre del atributo que hace referencia a la tabla.
 
